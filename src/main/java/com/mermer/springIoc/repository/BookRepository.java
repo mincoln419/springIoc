@@ -17,6 +17,6 @@ import com.mermer.springIoc.vo.Book;
  * @version : x.x
  */
 @Repository
-public interface BookRepository extends JpaRepository<Book, String>{
+public interface BookRepository extends JpaRepository<Book, Long>{
 
 }

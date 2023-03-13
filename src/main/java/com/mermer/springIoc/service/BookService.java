@@ -3,6 +3,8 @@ package com.mermer.springIoc.service;
 import java.time.LocalDateTime;
 import java.util.Date;
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,6 +37,12 @@ public class BookService {
 		book.setCreated(LocalDateTime.now());
 		book.setStatus(BookStatus.DRAFT);
 		return bookRepository.save(book);
+	}
+	
+	@PostConstruct
+	public void postConstruct() {
+		System.out.println("======================");
+		System.out.println("postConstruct -- hello");
 	}
 	
 	
