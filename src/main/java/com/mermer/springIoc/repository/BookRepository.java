@@ -5,6 +5,8 @@ import org.springframework.stereotype.Repository;
 
 import com.mermer.springIoc.vo.Book;
 
+import lombok.Data;
+
 /**
  * <pre>
  * com.mermer.springIoc.repository
@@ -17,6 +19,9 @@ import com.mermer.springIoc.vo.Book;
  * @version : x.x
  */
 @Repository
-public interface BookRepository extends JpaRepository<Book, Long>{
-
+public class BookRepository {
+	
+	public Book save(Book book) {
+		return null;
+	}
 }

@@ -12,6 +12,8 @@ import com.mermer.springIoc.repository.BookRepository;
 import com.mermer.springIoc.status.BookStatus;
 import com.mermer.springIoc.vo.Book;
 
+import lombok.Data;
+
 /**
  * <pre>
  * com.mermer.springIoc.service
@@ -26,10 +28,19 @@ import com.mermer.springIoc.vo.Book;
 @Service
 public class BookService {
 
-	@Autowired
-	private BookRepository bookRepository;
 	
+	public BookRepository bookRepository;
+	
+	//@Autowired
 	public BookService(BookRepository bookRepository) {
+		this.bookRepository = bookRepository;
+	}
+	
+	/**
+	 * @param bookRepository the bookRepository to set
+	 */
+	@Autowired(required = false)
+	public void setBookRepository(BookRepository bookRepository) {
 		this.bookRepository = bookRepository;
 	}
 	
