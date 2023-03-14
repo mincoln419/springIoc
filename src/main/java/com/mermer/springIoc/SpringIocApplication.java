@@ -8,6 +8,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextInitializer;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.context.support.GenericApplicationContext;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -18,6 +19,7 @@ import com.mermer.springIoc.service.AppRunner;
 import com.mermer.springIoc.service.BookService;
 
 @SpringBootApplication
+@PropertySource("classpath:/app.properties")
 public class SpringIocApplication {
 
 	
