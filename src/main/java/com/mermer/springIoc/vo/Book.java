@@ -11,6 +11,7 @@ import javax.persistence.SequenceGenerator;
 import com.mermer.springIoc.status.BookStatus;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
 /**
@@ -27,9 +28,10 @@ import lombok.NonNull;
 @Entity
 @Data
 @SequenceGenerator(name = "SQ_BOOK_ID_GENERATOR", sequenceName = "SQ_BOOK_ID", initialValue = 1, allocationSize = 1)
+@NoArgsConstructor
 public class Book {
 	
-	@Id @GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@Id @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SQ_BOOK_ID_GENERATOR")
 	private Long id;
 	
 	@NonNull

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.mermer.springIoc.repository.BookRepository;
 import com.mermer.springIoc.status.BookStatus;
 import com.mermer.springIoc.vo.Book;
+import com.mermer.springIoc.vo.BookDto;
 
 import lombok.Data;
 
@@ -35,7 +36,9 @@ public class BookService {
 		this.bookRepository = bookRepository;
 	}
 	
-	public Book save(Book book) {
+	public Book save(BookDto bookdto) {
+		Book book = new Book();
+		book.setName(bookdto.getName());
 		book.setCreated(LocalDateTime.now());
 		book.setStatus(BookStatus.DRAFT);
 		return bookRepository.save(book);

@@ -18,7 +18,7 @@ import lombok.Data;
  * @desc    : 
  * @version : x.x
  */
-public interface BookRepository {
+public interface BookRepository extends JpaRepository<Book, Long> {
 	
 	public Book save(Book book);
 }
