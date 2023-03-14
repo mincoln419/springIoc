@@ -23,7 +23,7 @@ import com.mermer.springIoc.service.BookService;
 @ComponentScan(basePackageClasses = SpringIocApplication.class)
 public class ApplicationConfig {
 
-
+	
 	
 	
 }
