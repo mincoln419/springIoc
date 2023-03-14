@@ -14,6 +14,9 @@ import org.springframework.context.MessageSource;
 import org.springframework.core.env.Environment;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
+import org.springframework.expression.Expression;
+import org.springframework.expression.ExpressionParser;
+import org.springframework.expression.spel.standard.SpelExpressionParser;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.BeanPropertyBindingResult;
 import org.springframework.validation.Errors;
@@ -116,5 +119,12 @@ public class AppRunner implements ApplicationRunner{
 		});
 		
 		System.out.println(validator.getClass());
+		
+		ExpressionParser parser = new SpelExpressionParser();
+		Expression expression =  parser.parseExpression("2 + 100");
+		Integer value = expression.getValue(Integer.class);
+		System.out.println(value);
+		
+		
 	}
 }
