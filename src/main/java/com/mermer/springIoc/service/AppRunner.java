@@ -1,5 +1,8 @@
 package com.mermer.springIoc.service;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +13,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.MessageSource;
 import org.springframework.core.env.Environment;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Component;
 
 import com.mermer.springIoc.event.MyEvent;
@@ -51,9 +56,12 @@ public class AppRunner implements ApplicationRunner{
 	
 	@Autowired
 	ApplicationEventPublisher applicationEventPublisher;
+	
+	@Autowired
+	ResourceLoader resourceLoader;
 		
 	@Override
-	public void run(ApplicationArguments args) {
+	public void run(ApplicationArguments args) throws IOException {
 		System.out.println(single);
 		System.out.println(proto);
 		System.out.println(single.getProto());
@@ -78,6 +86,13 @@ public class AppRunner implements ApplicationRunner{
 //			}
 //		}
 		applicationEventPublisher.publishEvent(new MyEvent(this, 400));
+	
 		
+		Resource resource = resourceLoader.getResource("classpath:test.txt");
+		System.out.println("exists:: " + resource.exists());
+		System.out.println("filename:: " + resource.getDescription());
+		System.out.println("path:: " + Files.readString(Path.of(resource.getURI())));
+		
+		System.out.println("getClass::" + resourceLoader.getClass());
 	}
 }

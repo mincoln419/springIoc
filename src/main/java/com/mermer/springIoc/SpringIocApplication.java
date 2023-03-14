@@ -42,7 +42,7 @@ public class SpringIocApplication {
 //		app.run(args).close();
 		//BookService bookService = (BookService) context.getBean("bookService");
 		//System.out.println(bookService.bookRepository);
-		SpringApplication.run(SpringIocApplication.class, args);
+		SpringApplication.run(SpringIocApplication.class, args).close();
 	}
 	
 	
