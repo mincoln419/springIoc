@@ -7,10 +7,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextInitializer;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.context.support.GenericApplicationContext;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import com.mermer.myservice.MyService;
@@ -23,12 +26,6 @@ import com.mermer.springIoc.service.BookService;
 public class SpringIocApplication {
 
 	
-	@Autowired
-	private MyService myService;
-	
-	@Autowired
-	private AppRunner appRunner;
-		
 	public static void main(String[] args) {
 	//	ApplicationContext context = new ClassPathXmlApplicationContext("application.xml");
 		
@@ -40,10 +37,20 @@ public class SpringIocApplication {
 			ctx.registerBean(ApplicationRunner.class, () -> args1 -> System.out.println("runner!"));
 		});
 //		
-		app.run(args).close();
+//		app.run(args).close();
 		//BookService bookService = (BookService) context.getBean("bookService");
 		//System.out.println(bookService.bookRepository);
-//		SpringApplication.run(SpringIocApplication.class, args);
+		SpringApplication.run(SpringIocApplication.class, args);
+	}
+	
+	
+	@Bean
+	public MessageSource messageSource() {
+		var messageSource = new ReloadableResourceBundleMessageSource();
+		messageSource.setBasename("classpath:/messages_en");
+		messageSource.setDefaultEncoding("UTF-8");
+		messageSource.setCacheSeconds(3);
+		return messageSource;
 	}
 
 }

@@ -1,10 +1,13 @@
 package com.mermer.springIoc.service;
 
+import java.util.Locale;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.MessageSource;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
@@ -41,6 +44,9 @@ public class AppRunner implements ApplicationRunner{
 	@Value("${app.name}")
 	String appName;
 	
+	@Autowired
+	MessageSource messageSource;
+	
 	@Override
 	public void run(ApplicationArguments args) {
 		System.out.println(single);
@@ -56,6 +62,16 @@ public class AppRunner implements ApplicationRunner{
 		
 		System.out.println(appName);
 		
+		while(true) {
+			System.out.println(messageSource.getMessage("greeting", new String[] {"mermer"}, Locale.KOREA)) ;
+			System.out.println(messageSource.getMessage("greeting", new String[] {"mermer"}, Locale.getDefault()));
+			try {
+				Thread.sleep(3000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		
 	}
 }
