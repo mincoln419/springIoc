@@ -14,6 +14,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.context.support.GenericApplicationContext;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import com.mermer.myservice.MyService;
@@ -23,6 +24,7 @@ import com.mermer.springIoc.service.BookService;
 
 @SpringBootApplication
 @PropertySource("classpath:/app.properties")
+@EnableAsync
 public class SpringIocApplication {
 
 	
