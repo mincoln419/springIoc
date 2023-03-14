@@ -1,6 +1,7 @@
 package com.mermer.springIoc.vo;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -19,6 +20,6 @@ import org.springframework.stereotype.Component;
 public class Proto {
 
 	@Autowired
-	public Single single;
+	private ApplicationContext ctx;
 	
 }

@@ -28,19 +28,10 @@ import lombok.Data;
 @Service
 public class BookService {
 
-	
 	public BookRepository bookRepository;
 	
-	//@Autowired
+	@Autowired	
 	public BookService(BookRepository bookRepository) {
-		this.bookRepository = bookRepository;
-	}
-	
-	/**
-	 * @param bookRepository the bookRepository to set
-	 */
-	@Autowired(required = false)
-	public void setBookRepository(BookRepository bookRepository) {
 		this.bookRepository = bookRepository;
 	}
 	

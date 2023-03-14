@@ -10,13 +10,14 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.context.support.GenericApplicationContext;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import com.mermer.myservice.MyService;
 import com.mermer.springIoc.config.ApplicationConfig;
 import com.mermer.springIoc.service.AppRunner;
 import com.mermer.springIoc.service.BookService;
 
-@SpringBootApplication()
+@SpringBootApplication
 public class SpringIocApplication {
 
 	
@@ -25,7 +26,7 @@ public class SpringIocApplication {
 	
 	@Autowired
 	private AppRunner appRunner;
-	
+		
 	public static void main(String[] args) {
 	//	ApplicationContext context = new ClassPathXmlApplicationContext("application.xml");
 		
@@ -36,10 +37,11 @@ public class SpringIocApplication {
 			ctx.registerBean(MyService.class);
 			ctx.registerBean(ApplicationRunner.class, () -> args1 -> System.out.println("runner!"));
 		});
-		
-		app.run(args);
+//		
+		app.run(args).close();
 		//BookService bookService = (BookService) context.getBean("bookService");
 		//System.out.println(bookService.bookRepository);
+//		SpringApplication.run(SpringIocApplication.class, args);
 	}
 
 }

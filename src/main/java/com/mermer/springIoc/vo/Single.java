@@ -3,6 +3,8 @@ package com.mermer.springIoc.vo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import lombok.Data;
+
 /**
  * <pre>
  * com.mermer.springIoc.vo
@@ -15,7 +17,10 @@ import org.springframework.stereotype.Component;
  * @version : x.x
  */
 @Component
+@Data
 public class Single {
 	
+	@Autowired
+	private Proto proto;
 
 }
