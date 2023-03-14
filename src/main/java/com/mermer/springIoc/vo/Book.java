@@ -11,6 +11,7 @@ import javax.persistence.SequenceGenerator;
 import com.mermer.springIoc.status.BookStatus;
 
 import lombok.Data;
+import lombok.NonNull;
 
 /**
  * <pre>
@@ -31,6 +32,7 @@ public class Book {
 	@Id @GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
 	
+	@NonNull
 	private String name;
 	
 	private LocalDateTime created;

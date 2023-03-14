@@ -3,7 +3,6 @@ package com.mermer.springIoc.service;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -16,11 +15,16 @@ import org.springframework.core.env.Environment;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Component;
+import org.springframework.validation.BeanPropertyBindingResult;
+import org.springframework.validation.Errors;
+import org.springframework.validation.Validator;
 
 import com.mermer.springIoc.event.MyEvent;
 import com.mermer.springIoc.repository.BookRepository;
+import com.mermer.springIoc.vo.Book;
 import com.mermer.springIoc.vo.Proto;
 import com.mermer.springIoc.vo.Single;
+import com.mermer.springIoc.vo.validator.BookValidator;
 
 /**
  * <pre>
@@ -59,6 +63,9 @@ public class AppRunner implements ApplicationRunner{
 	
 	@Autowired
 	ResourceLoader resourceLoader;
+	
+	@Autowired
+	Validator validator;
 		
 	@Override
 	public void run(ApplicationArguments args) throws IOException {
@@ -94,5 +101,20 @@ public class AppRunner implements ApplicationRunner{
 		System.out.println("path:: " + Files.readString(Path.of(resource.getURI())));
 		
 		System.out.println("getClass::" + resourceLoader.getClass());
+		
+		
+		Book book = new Book();
+		BookValidator bookValidator = new BookValidator();
+		Errors errors = new BeanPropertyBindingResult(book, "book");
+		bookValidator.validate(book, errors);
+		System.out.println(errors.hasErrors());
+		
+		errors.getAllErrors().forEach(e ->{
+			System.out.println(e.getCode());
+			System.out.println(e.getDefaultMessage());
+			System.out.println(e.getObjectName());
+		});
+		
+		System.out.println(validator.getClass());
 	}
 }
