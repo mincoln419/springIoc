@@ -37,7 +37,5 @@ public class PerfAspect {
 	public void endPerf() throws Throwable {
 		long begin =  System.currentTimeMillis();
 		System.out.println("before::" + (System.currentTimeMillis() - begin));
-		em.
-		em.persist(em);
 	}
 }
