@@ -22,6 +22,7 @@ import org.springframework.validation.BeanPropertyBindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
+import com.mermer.springIoc.aop.PerfLogging;
 import com.mermer.springIoc.event.MyEvent;
 import com.mermer.springIoc.repository.BookRepository;
 import com.mermer.springIoc.vo.Book;
@@ -69,7 +70,8 @@ public class AppRunner implements ApplicationRunner{
 	
 	@Autowired
 	Validator validator;
-		
+	
+	@PerfLogging
 	@Override
 	public void run(ApplicationArguments args) throws IOException {
 		System.out.println(single);

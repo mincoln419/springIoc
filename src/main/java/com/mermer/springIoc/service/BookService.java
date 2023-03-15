@@ -8,6 +8,7 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.mermer.springIoc.aop.PerfLogging;
 import com.mermer.springIoc.repository.BookRepository;
 import com.mermer.springIoc.status.BookStatus;
 import com.mermer.springIoc.vo.Book;
@@ -35,7 +36,7 @@ public class BookService {
 	public BookService(BookRepository bookRepository) {
 		this.bookRepository = bookRepository;
 	}
-	
+	@PerfLogging
 	public Book save(BookDto bookdto) {
 		Book book = new Book();
 		book.setName(bookdto.getName());
@@ -48,6 +49,10 @@ public class BookService {
 	public void postConstruct() {
 		System.out.println("======================");
 		System.out.println("postConstruct -- hello");
+		
+		 
+		
+		
 	}
 	
 	

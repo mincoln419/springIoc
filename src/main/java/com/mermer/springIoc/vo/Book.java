@@ -3,6 +3,8 @@ package com.mermer.springIoc.vo;
 import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -39,6 +41,7 @@ public class Book {
 	
 	private LocalDateTime created;
 	
+	@Enumerated(EnumType.STRING)
 	private BookStatus status;
 
 }
