@@ -6,6 +6,7 @@ import static org.mockito.Mockito.when;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.mermer.springIoc.repository.BookRepository;
@@ -28,18 +29,21 @@ class BookServiceTest {
 
 	@Mock
 	BookRepository bookRepository;
-//	
-//	@Test
-//	void test() {
-//		Book book = new Book();
-//		
-//		when(bookRepository.save(book)).thenReturn(book);
-//		//BookRepository bookRepository = new BookRepository();
-//		BookService bookService = new BookService(bookRepository);
-//		Book result = bookService.save(book);
-//		assertThat(result).isNotNull();
-//		assertThat(book.getCreated()).isNotNull();
-//		assertThat(book.getStatus()).isEqualTo(BookStatus.DRAFT);
-//	}
+	
+
+	
+	@Test
+	void test() {
+		Book book = new Book();
+		
+		when(bookRepository.save(book)).thenReturn(book);
+		//BookRepository bookRepository = new BookRepository();
+		
+		BookService bookService = new BookService(bookRepository);
+		bookService.save(null);
+		//assertThat(result).isNotNull();
+		assertThat(book.getCreated()).isNotNull();
+		assertThat(book.getStatus()).isEqualTo(BookStatus.DRAFT);
+	}
 
 }

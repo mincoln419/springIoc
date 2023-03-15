@@ -1,5 +1,7 @@
 package com.mermer.springIoc.aop;
 
+import javax.persistence.EntityManager;
+
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -21,6 +23,8 @@ import org.springframework.stereotype.Component;
 @Aspect
 public class PerfAspect {
 	
+	EntityManager em;
+	
 	@Around("@annotation(PerfLogging)")
 	public Object logPerf(ProceedingJoinPoint joinPoint) throws Throwable {
 		long begin =  System.currentTimeMillis();
@@ -33,6 +37,7 @@ public class PerfAspect {
 	public void endPerf() throws Throwable {
 		long begin =  System.currentTimeMillis();
 		System.out.println("before::" + (System.currentTimeMillis() - begin));
-		
+		em.
+		em.persist(em);
 	}
 }

@@ -14,6 +14,7 @@ import com.mermer.springIoc.status.BookStatus;
 import com.mermer.springIoc.vo.Book;
 import com.mermer.springIoc.vo.BookDto;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 /**
@@ -28,14 +29,12 @@ import lombok.Data;
  * @version : x.x
  */
 @Service
+@AllArgsConstructor
 public class BookService {
 
-	public BookRepository bookRepository;
+	final public BookRepository bookRepository;
 	
-	@Autowired	
-	public BookService(BookRepository bookRepository) {
-		this.bookRepository = bookRepository;
-	}
+	
 	@PerfLogging
 	public Book save(BookDto bookdto) {
 		Book book = new Book();
